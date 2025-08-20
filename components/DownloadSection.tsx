@@ -32,7 +32,7 @@ const DownloadSection: React.FC = () => {
                         </h3>
                         <p className="tw-text-coiner-text-dark tw-text-lg sm:tw-text-xl tw-leading-relaxed tw-mb-8">
                             {/* Don't miss out! Download now for an enjoyable app experience. Seize the opportunity to immerse yourself in seamless functionalities and endless possibilities. */}
-                            Seamlessly trade, stake, and grow your assets with backedByQuantum. Your gateway to secure, fast, and transparent crypto transactions.
+                            Seamlessly trade, stake, and grow your assets with BackedByQuantum. Your gateway to secure, fast, and transparent crypto transactions.
                         </p>
 
                         {/* App Store Buttons */}

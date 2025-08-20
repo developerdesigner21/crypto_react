@@ -1,5 +1,6 @@
 // src/components/HowItWorks.tsx
 import '../app/globals.css'
+import howWorks from '../assets/HowItWorksImage.png';
 
 // TypeScript interface for FeatureCard props for type safety
 interface FeatureCardProps {
@@ -68,7 +69,7 @@ const HowItWorks: React.FC = () => {
                         How It Works
                     </h2>
                     <p className="tw-text-white/80 tw-text-lg sm:tw-text-xl tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
-                        Discover how backedbyquantum website simplifies crypto trading through user-friendly interfaces, secure transactions, and real-time market insights.
+                        Discover how BackedByQuantum website simplifies crypto trading through user-friendly interfaces, secure transactions, and real-time market insights.
                     </p>
                 </div>
 
@@ -79,12 +80,12 @@ const HowItWorks: React.FC = () => {
                     <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-full tw-max-w-[450px] tw-mx-auto lg:tw-max-w-none
                           tw-h-[450px] lg:tw-h-[600px] xl:tw-h-[700px]
                           tw-rounded-[30px] tw-p-6 lg:tw-p-8 xl:tw-p-10
-                          tw-bg-gradient-to-br tw-from-coiner-yellow-green tw-to-coiner-green tw-overflow-hidden">
+                          tw-overflow-hidden">
                         <img
                             decoding="async"
                             loading="lazy"
-                            src="https://framerusercontent.com/images/7JFi5vS3N0YhD6wPNoN1e53ZvZg.png"
-                            alt="Person holding a phone displaying backedbyquantum app registration screen"
+                            src={howWorks.src}
+                            alt="Person holding a phone displaying BackedByQuantum app registration screen"
                             className="tw-w-full tw-h-full tw-object-contain"
                         />
                     </div>

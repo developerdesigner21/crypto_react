@@ -17,7 +17,7 @@ const featureItems: FeatureItem[] = [
     {
         id: "02",
         title: "Margin leveraging.",
-        description: "Maximize gains with margin trading with backedbyquantum",
+        description: "Maximize gains with margin trading with BackedByQuantum",
     },
     {
         id: "03",
@@ -27,7 +27,7 @@ const featureItems: FeatureItem[] = [
     {
         id: "04",
         title: "Maximize Savings",
-        description: "Save more money, worry less with backedbyquantum",
+        description: "Save more money, worry less with BackedByQuantum",
     },
 ];
 

@@ -158,12 +158,12 @@ export default function UserInfo() {
                   ></div>
 
                   <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <div style={{ fontSize: "12px", lineHeight: "16px" }}>
-                      <div style={{ fontWeight: "bold" }}>
-                        backedbyquantum
+                    <div style={{ fontSize: "15px", lineHeight: "16px" }}>
+                      <div style={{ fontWeight: "bold", marginBottom:"6px" }}>
+                        BackedByQuantum
                       </div>
                       <div style={{ fontSize: "10px", color: "#ccc" }}>
-                        QUANTUM FINANCIAL SYSTEM
+                        Web3-QUANTUM FINANCIAL SYSTEM
                       </div>
                     </div>
                     <div style={{ fontWeight: "bold" }}>QFS Card</div>

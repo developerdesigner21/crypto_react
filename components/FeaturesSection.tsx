@@ -57,7 +57,7 @@ const FeaturesSection: React.FC = () => {
                     </h2>
                     <p className="tw-text-gray-300 tw-text-lg">
                         Explore our platform's unparalleled crypto features, setting us apart with exclusive
-                        offerings not found elsewhere. Join backedbyquantum today itself.
+                        offerings not found elsewhere. Join BackedByQuantum today itself.
                     </p>
                 </div>
 

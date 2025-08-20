@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 // Assuming 'logo' is correctly imported from your assets folder
 // Social icons as specified in your import list for this iteration
-import { FaInstagram, FaTiktok, FaFacebookF, FaTelegramPlane  } from 'react-icons/fa';
+import { FaInstagram, FaTiktok, FaFacebookF, FaTelegramPlane } from 'react-icons/fa';
 import { SiX } from 'react-icons/si';
 import '../app/globals.css'
 import logo from '../assets/Group 220.png';
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
     const [toastType, setToastType] = useState<'success' | 'error'>('success');
 
     // Data for Quick Links, split into two logical columns as per the cropped image
-    const quickLinksCol1 = ['IGO', 'LAUNCHPAD', 'STAKING', 'FARMING', 'CRYPTO'];
+    const quickLinksCol1 = ['IGO', 'LAUNCHPAD', 'STAKING', 'FARMING', 'CRYPTO', 'About US'];
     const quickLinksCol2 = ['DEFI', 'WEB3', 'IEO', 'IDO', 'TOKEN', 'GAMING', 'NFT'];
 
     // Data for Social Media platforms (as defined in your provided code)
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
         // { name: 'TikTok', icon: FaTiktok, href: 'https://tiktok.com' },
         // { name: 'Facebook', icon: FaFacebookF, href: 'https://facebook.com' },
         // { name: 'X (Twitter)', icon: SiX, href: 'https://twitter.com' }, // Using SiX for X.com
-        { name: 'Telegram', icon: FaTelegramPlane, href: 'https://t.me/+1(213) 272-7579' },
+        { name: 'Telegram', icon: FaTelegramPlane, href: 'https://t.me/backedbyquantumsuppport' },
     ];
 
     // Email validation function
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
     // Handle form submission
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!email.trim()) {
             showToastMessage('Please enter an email address', 'error');
             return;
@@ -84,27 +84,27 @@ const Footer: React.FC = () => {
 
     return (
         <>
-            <Toast 
-                message={toastMessage} 
-                type={toastType} 
-                isVisible={showToast} 
+            <Toast
+                message={toastMessage}
+                type={toastType}
+                isVisible={showToast}
                 onClose={closeToast}
                 duration={5000}
                 position="top-right"
             />
-            
+
             <footer className="tw-bg-[rgb(3,7,18)] tw-text-gray-300 tw-font-sans">
-                <div className="tw-container tw-mx-auto tw-px-8 xl:tw-pl-24
-                          tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 {/* Maintain 4 columns for LG for distribution */}
+                <div className="tw-container tw-mx-auto tw-max-w-7xl
+                          tw-grid tw-grid-cols-1 md:tw-grid-cols-3 {/* Maintain 4 columns for LG for distribution */}
                           tw-gap-y-12 md:tw-gap-y-16 lg:tw-gap-32">
 
                     {/* 1. Branding Section (Column 1) */}
                     {/* On mobile: 1 column. On tablet: 1 column. On desktop: 1 column */}
-                    <div className="md:tw-col-span-1 lg:tw-col-span-1">
+                    <div className="">
                         <div className="tw-flex tw-items-center tw-mb-6 tw-w-1/2">
                             {/* Logo image imported from your assets */}
                             <Image
-                                src={logo} 
+                                src={logo}
                                 alt="Header Logo"
                                 width={48}
                                 height={48}
@@ -112,8 +112,8 @@ const Footer: React.FC = () => {
                             />
                             <span className="tw-text-white tw-text-3xl tw-font-bold tw-ml-3">BACKEDBY <span className="tw-text-green-400">Quantum</span></span>
                         </div>
-                        <p className="tw-leading-relaxed tw-mb-8 tw-max-w-sm">
-                            Welcome to backedbyquantum, your gateway to the world of Web3 trading! Our user-friendly platform empowers you to explore a wide range of popular cryptocurrencies
+                        <p className="tw-leading-relaxed tw-mb-8" style={{fontSize:"16px"}}>
+                            Welcome to BackedByQuantum, your gateway to the world of Web3 trading! Our user-friendly platform empowers you to explore a wide range of popular cryptocurrencies
                         </p>
 
                         {/* Social Media Icons with circular background and hover effects */}
@@ -137,14 +137,17 @@ const Footer: React.FC = () => {
 
                     {/* 2. Quick Links Column (Column 2) */}
                     {/* On mobile: 1 column. On tablet: 1 column. On desktop: 1 column */}
-                    <div className="md:tw-col-span-1 lg:tw-col-span-1">
-                        <h3 className="tw-text-white tw-text-xl tw-font-bold tw-mb-8">Quick Links</h3>
+                    <div className="">
+                        <h3 className="tw-text-white tw-text-xl tw-text-center tw-font-bold tw-mb-8">Quick Links</h3>
                         {/* Inner flex container to create two columns for Quick Links links */}
-                        <div className="tw-flex tw-flex-row tw-gap-16">
+                        <div className="tw-flex tw-flex-row tw-justify-center tw-gap-16">
                             <ul className="tw-space-y-4 tw-list-none"> {/* tw-list-none to remove default bullets */}
                                 {quickLinksCol1.map((link) => (
-                                    <li key={link}>
-                                        <a href="/start-boarding" className="tw-hover:tw-text-white tw-transition-colors tw-duration-300 tw-text-sm tw-tracking-wider">
+                                    <li>
+                                        <a
+                                            href={link === 'About US' ? '/about-us' : '/start-boarding'}
+                                            className="tw-hover:tw-text-white tw-transition-colors tw-duration-300 tw-text-sm tw-tracking-wider"
+                                        >
                                             {link}
                                         </a>
                                     </li>
@@ -169,10 +172,10 @@ const Footer: React.FC = () => {
 
                     {/* 4. Newsletter Section (Column 3 & 4 combined on LG screens) */}
                     {/* On mobile: 1 column. On tablet: spans 2 columns. On desktop: spans 2 columns to fill remaining space */}
-                    <div className="md:tw-col-span-2 lg:tw-col-span-2"> {/* This spans the remaining columns on larger screens */}
+                    <div className=""> {/* This spans the remaining columns on larger screens */}
                         <h3 className="tw-text-white tw-text-xl tw-font-bold tw-mb-8">Newsletter</h3>
-                        <p className="tw-mb-8 tw-leading-relaxed tw-max-w-md">
-                            Welcome to backedbyquantum your gateway to the world of Web3 trading! Our user-friendly platform
+                        <p className="tw-mb-8 tw-leading-relaxed tw-max-w-md" style={{fontSize:"16px"}}>
+                            Welcome to BackedByQuantum your gateway to the world of Web3 trading! Our user-friendly platform
                         </p>
                         <form onSubmit={handleSubmit} className="tw-max-w-md">
                             <div className="tw-relative">
@@ -198,7 +201,7 @@ const Footer: React.FC = () => {
 
                 {/* Footer Bottom Bar */}
                 <div className="tw-border-t tw-border-gray-700 tw-mt-16 tw-pt-8 tw-pb-4 tw-text-center tw-text-gray-400 tw-text-sm">
-                    Copyright &copy;2024 backedbyquantum. All rights reserved.
+                    Copyright &copy;2024 <a href='/about-us' className='text-white'>BackedByQuantum</a>. All rights reserved.
                 </div>
             </footer>
         </>
