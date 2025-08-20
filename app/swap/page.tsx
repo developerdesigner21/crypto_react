@@ -78,7 +78,7 @@ export default function SwapForm() {
         <label className="tw-text-sm tw-text-gray-400">Swap from</label>
         <div className="tw-flex tw-items-center tw-justify-between tw-border-2 tw-border-solid tw-border-gray-600 tw-rounded-lg tw-px-3 tw-py-2 tw-mt-1">
           <select
-            className="tw-bg-transparent tw-outline-none tw-w-full"
+            className="tw-bg-transparent tw-outline-none tw-w-full tw-capitalize"
             value={fromCoin}
             onChange={(e) => setFromCoin(e.target.value)}
           >

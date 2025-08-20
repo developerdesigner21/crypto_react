@@ -143,7 +143,7 @@ export default function Rating({ coins }: RatingProps) {
                     : "decrease";
 
                 return (
-                  <li key={coin.id} className="mt-16">
+                  <li key={coin.id} className="mt-16 tw-capitalize">
                     <Link
                       href={`/coin/${coins}`}
                       className="coin-item style-2 gap-12 p-2"

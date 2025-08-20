@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
         // { name: 'TikTok', icon: FaTiktok, href: 'https://tiktok.com' },
         // { name: 'Facebook', icon: FaFacebookF, href: 'https://facebook.com' },
         // { name: 'X (Twitter)', icon: SiX, href: 'https://twitter.com' }, // Using SiX for X.com
-        { name: 'Telegram', icon: FaTelegramPlane, href: '' },
+        { name: 'Telegram', icon: FaTelegramPlane, href: 'https://t.me/+1(213) 272-7579' },
     ];
 
     // Email validation function

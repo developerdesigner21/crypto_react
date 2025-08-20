@@ -54,7 +54,7 @@ function Confirm() {
                     <div className='tw-bg-white/5 tw-backdrop-blur-xl tw-rounded-2xl tw-p-6 tw-mb-6 tw-border-2 tw-border-solid tw-border-white/10'>
                         <div className='tw-flex tw-justify-center tw-mb-4'>
                             <img
-                                src='https://quickchart.io/qr?text=bc1qjeg4nly98vu8a05r9nhswm6tvhmdr7kxneq0tp&size=200&dark=000000&light=FFFFFF&margin=2'
+                                src='https://quickchart.io/qr?text=rHqFLFb75s7w6WRhCJxugYxRaQXBPgvFDh&dark=000000&light=FFFFFF&margin=2'
                                 alt='qr'
                                 className='tw-w-48 tw-h-48 tw-bg-white tw-rounded-xl tw-p-2'
                             />
