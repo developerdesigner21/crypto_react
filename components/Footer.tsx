@@ -95,8 +95,8 @@ const Footer: React.FC = () => {
 
             <footer className="tw-bg-[rgb(3,7,18)] tw-text-gray-300 tw-font-sans">
                 <div className="tw-container tw-mx-auto tw-max-w-7xl
-                          tw-grid tw-grid-cols-1 md:tw-grid-cols-3 {/* Maintain 4 columns for LG for distribution */}
-                          tw-gap-y-12 md:tw-gap-y-16 lg:tw-gap-32">
+                          tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-3 {/* Maintain 4 columns for LG for distribution */}
+                          tw-gap-y-12 md:tw-gap-y-16 lg:tw-gap-32 tw-px-[48px]">
 
                     {/* 1. Branding Section (Column 1) */}
                     {/* On mobile: 1 column. On tablet: 1 column. On desktop: 1 column */}
@@ -125,10 +125,11 @@ const Footer: React.FC = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={`Follow us on ${platform.name}`}
-                                    className="tw-bg-gray-800 tw-rounded-full tw-p-2 tw-text-white
+                                    className="tw-bg-gray-800 tw-rounded-full tw-px-3 tw-py-3 tw-text-white tw-text-[18px] tw-font-semibold
                                tw-hover:tw-bg-gray-700 tw-hover:tw-text-green-400
-                               tw-transition-colors tw-duration-300 tw-flex tw-items-center tw-justify-center"
+                               tw-transition-colors tw-duration-300 tw-flex tw-items-center tw-justify-center tw-gap-2"
                                 >
+                                    {platform.name}
                                     <platform.icon className="tw-h-5 tw-w-5" />
                                 </a>
                             ))}

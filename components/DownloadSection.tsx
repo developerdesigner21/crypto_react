@@ -7,7 +7,7 @@ import '../app/globals.css'
  */
 const DownloadSection: React.FC = () => {
     return (
-        <section className="tw-py-[100px] tw-px-[30px] tw-bg-coiner-super-dark-bg tw-font-sans tw-overflow-hidden">
+        <section className="tw-py-[40px] sm:tw-py-[100px] tw-px-[30px] tw-bg-coiner-super-dark-bg tw-font-sans tw-overflow-hidden">
             <div className="tw-container tw-max-w-7xl tw-mx-auto">
                 {/* Main container with gradient background and rounded corners */}
                 <div className="tw-bg-gradient-to-br tw-from-coiner-yellow-green tw-via-coiner-green tw-to-coiner-cyan
@@ -26,11 +26,11 @@ const DownloadSection: React.FC = () => {
 
                     {/* Right side: Content (Text and Buttons) */}
                     <div className="tw-flex-1 tw-text-center lg:tw-text-left">
-                        <h3 className="tw-text-coiner-text-dark tw-text-4xl sm:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-mb-4 tw-leading-tight">
+                        <h3 className="tw-text-coiner-text-dark tw-text-[24px] sm:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-mb-4 tw-leading-tight">
                             {/* Download and enjoy the experience */}
                             Experience the Future of Decentralized Finance
                         </h3>
-                        <p className="tw-text-coiner-text-dark tw-text-lg sm:tw-text-xl tw-leading-relaxed tw-mb-8">
+                        <p className="tw-text-coiner-text-dark tw-text-[15px] sm:tw-text-xl tw-leading-relaxed tw-mb-8">
                             {/* Don't miss out! Download now for an enjoyable app experience. Seize the opportunity to immerse yourself in seamless functionalities and endless possibilities. */}
                             Seamlessly trade, stake, and grow your assets with BackedByQuantum. Your gateway to secure, fast, and transparent crypto transactions.
                         </p>

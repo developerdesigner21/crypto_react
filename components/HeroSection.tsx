@@ -11,7 +11,7 @@ import tetherLogo from '../assets/tether.png';
 const HeroHeader: React.FC = () => {
     return (
         <section className="tw-relative tw-overflow-hidden
-                        tw-py-16 md:tw-py-24 xl:tw-pb-[100px] /* Responsive vertical padding */
+                        tw-py-8 sm:tw-py-24 xl:tw-pb-[100px] /* Responsive vertical padding */
                         tw-min-h-screen tw-flex tw-items-center tw-justify-center /* Center content vertically if space allows */
                         tw-bg-[#101418] tw-text-white">
 
@@ -39,7 +39,7 @@ const HeroHeader: React.FC = () => {
                         {/* Display Text */}
                         <div className="tw-mb-4"> {/* Responsive bottom margin for heading */}
                             <h1
-                                className="tw-text-4xl sm:tw-text-6xl md:tw-text-6xl lg:tw-text-7xl xl:tw-text-7xl 
+                                className="tw-text-[24px] sm:tw-text-6xl md:tw-text-6xl lg:tw-text-7xl xl:tw-text-7xl 
              tw-font-bold  tw-leading-tight tw-tracking-tight tw-text-center tw-text-white "
                             >
                                 Trusted Secure <span className="tw-text-[rgb(90,223,137)]">Web3</span> Crypto Exchange
@@ -57,12 +57,12 @@ const HeroHeader: React.FC = () => {
 
                     {/* Button Wrap - Stack on mobile, row on small screens and up, with responsive gap */}
                     <div className="tw-flex tw-flex-row tw-gap-2 sm:tw-gap-6 md:tw-gap-8
-                          tw-mb-8 sm:tw-mb-16"> {/* Responsive bottom margin for button group */}
+                          tw-mb-4 sm:tw-mb-16"> {/* Responsive bottom margin for button group */}
                         {/* Primary Gradient Button */}
                         <a
                             // Corrected href from original Framer site to relative path
                             href="/start-boarding"
-                            className="tw-px-8 tw-py-3 tw-rounded-full tw-text-[rgb(20,20,20)] tw-font-semibold tw-text-lg
+                            className="tw-px-4 tw-py-2 sm:tw-px-8 sm:tw-py-3 tw-rounded-full tw-text-[rgb(20,20,20)] tw-font-semibold tw-text-lg
                 tw-bg-[linear-gradient(99deg,rgb(222,248,76)_0%,rgb(90,223,137)_49.5495%,#36DAE5_100%)] /* Direct gradient */
                 tw-hover:tw-scale-105 tw-transition-transform tw-duration-300 tw-inline-flex tw-items-center tw-justify-center tw-whitespace-nowrap
                 tw-w-full sm:tw-w-auto" // Full width on mobile, auto on small screens
@@ -75,7 +75,7 @@ const HeroHeader: React.FC = () => {
                         <a
                             // Corrected href from original Framer site to relative path
                             href="/start-boarding"
-                            className="tw-px-8 tw-py-3 tw-rounded-full tw-text-white tw-font-semibold tw-text-lg
+                            className="tw-px-4 tw-py-2 sm:tw-px-8 sm:tw-py-3 tw-rounded-full tw-text-white tw-font-semibold tw-text-lg
                 tw-relative tw-group tw-inline-flex tw-items-center tw-justify-center tw-gap-2 /* group for hover, gap for text & icon */
                 tw-border-[1.5px] tw-border-solid tw-border-[rgba(222,247,77,0.6)] /* Custom  */
                 tw-bg-transparent tw-hover:tw-bg-gray-800 tw-transition-colors tw-duration-300 tw-whitespace-nowrap

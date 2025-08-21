@@ -84,14 +84,14 @@ const YourMoneyYourChoice: React.FC = () => {
     const currentContent = tabSections.find((tab) => tab.id === activeTab);
 
     return (
-        <section className="tw-py-[100px] tw-px-[30px] tw-bg-coiner-super-dark-bg tw-font-sans tw-overflow-hidden">
+        <section className="tw-py-[40px] sm:tw-py-[100px] tw-px-[30px] tw-bg-coiner-super-dark-bg tw-font-sans tw-overflow-hidden">
             <div className="tw-container tw-max-w-7xl tw-mx-auto tw-flex tw-flex-col tw-items-center">
                 {/* Section Heading and Description */}
-                <div className="tw-text-center tw-mb-16 tw-px-4">
-                    <h2 className="tw-text-white tw-text-4xl sm:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-mb-4 tw-leading-tight">
+                <div className="tw-text-center tw-mb-8 sm:tw-mb-16 tw-px-4">
+                    <h2 className="tw-text-white tw-text-[24px] sm:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-mb-4 tw-leading-tight">
                         Your Money...Your Choice
                     </h2>
-                    <p className="tw-text-white/80 tw-text-lg sm:tw-text-xl tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
+                    <p className="tw-text-white/80 tw-text-base sm:tw-text-lg sm:tw-text-xl tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
                         Empower yourself with financial freedom. Our platform puts you in charge of your money, enabling confident trading and investment decisions.
                     </p>
                 </div>
@@ -107,7 +107,7 @@ const YourMoneyYourChoice: React.FC = () => {
                             <div
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`tw-flex-1 tw-flex tw-items-center tw-gap-3 tw-px-5 tw-py-3 tw-rounded-2xl
+                                className={`tw-flex-1 tw-flex tw-items-center tw-gap-3 tw-px-3 tw-py-2 sm:tw-px-5 sm:tw-py-3 tw-rounded-2xl
                             tw-transition-all tw-duration-300 tw-ease-in-out tw-cursor-pointer
                             ${activeTab === tab.id ? 'tw-bg-coiner-tab-bg-active tw-border-2 tw-border-solid tw-border-yellow-400' : 'tw-bg-transparent tw-border-2 tw-border-solid tw-border-white'}
                             tw-hover:tw-scale-[1.03] tw-hover:tw-shadow-lg tw-focus:tw-outline-none tw-focus:tw-ring-2 tw-focus:tw-ring-coiner-yellow-green`}
@@ -115,11 +115,11 @@ const YourMoneyYourChoice: React.FC = () => {
                                 role="tab"
                             >
                                 {/* Tab Icon */}
-                                <div className={`tw-w-10 tw-h-10 tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-rounded-full ${tab.tabIconBg}`}>
+                                <div className={`tw-w-8 tw-h-8 sm:tw-w-10 sm:tw-h-10 tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-rounded-full ${tab.tabIconBg}`}>
                                     <img src={tab.tabIconSrc} alt={tab.tabIconAlt} className="tw-w-6 tw-h-6 tw-object-contain" />
                                 </div>
                                 {/* Tab Title */}
-                                <h5 className="tw-text-white tw-text-lg sm:tw-text-xl tw-font-medium tw-whitespace-nowrap">
+                                <h5 className="tw-text-white tw-text-[16px] sm:tw-text-xl tw-font-medium tw-whitespace-nowrap">
                                     {tab.tabTitle}
                                 </h5>
                             </div>
@@ -149,7 +149,7 @@ const YourMoneyYourChoice: React.FC = () => {
 
                             {/* Right Side: Text Content */}
                             <div className="tw-flex tw-flex-col tw-items-center lg:tw-items-start tw-text-center lg:tw-text-left">
-                                <h2 className="tw-text-white tw-text-3xl sm:tw-text-4xl lg:tw-text-5xl tw-font-bold tw-mb-4 tw-leading-tight">
+                                <h2 className="tw-text-white tw-text-[24px] sm:tw-text-4xl lg:tw-text-5xl tw-font-bold tw-mb-4 tw-leading-tight">
                                     {currentContent.mainHeading}
                                 </h2>
                                 <p className="tw-text-white/80 tw-text-base sm:tw-text-lg tw-mb-6 tw-leading-relaxed">

@@ -216,56 +216,60 @@ export default function Wallet() {
                 id="history"
                 role="tabpanel"
               >
-                <ul>
-                  {transactions.map(
-                    (transaction: Transaction, index: number) => (
-                      <li key={index} className={index !== 0 ? "mt-8" : ""}>
-                        <Link
-                          href={`/choose-payment`}
-                          className="coin-item style-1 gap-12 bg-surface"
-                        >
-                          <Image
-                            alt={transaction.alt}
-                            className="img"
-                            src={transaction.src}
-                            width={80}
-                            height={80}
-                          />
-                          <div className="content">
-                            <div className="title">
-                              <p className="mb-4 text-large">
-                                {transaction.title}
-                              </p>
-                              <span className="text-secondary">
-                                {transaction.time}
-                              </span>
-                            </div>
-                            {transaction.amount ? (
-                              <div className="box-price">
-                                <p className="text-small mb-4">
-                                  <span className="text-primary">
+                {transactions.length > 0 ? (
+                  <ul>
+                    {transactions.map(
+                      (transaction: Transaction, index: number) => (
+                        <li key={index} className={index !== 0 ? "mt-8" : ""}>
+                          <Link
+                            href={`/choose-payment`}
+                            className="coin-item style-1 gap-12 bg-surface"
+                          >
+                            <Image
+                              alt={transaction.alt}
+                              className="img"
+                              src={transaction.src}
+                              width={80}
+                              height={80}
+                            />
+                            <div className="content">
+                              <div className="title">
+                                <p className="mb-4 text-large">
+                                  {transaction.title}
+                                </p>
+                                <span className="text-secondary">
+                                  {transaction.time}
+                                </span>
+                              </div>
+                              {transaction.amount ? (
+                                <div className="box-price">
+                                  <p className="text-small mb-4">
+                                    <span className="text-primary">
+                                      {transaction.change}
+                                    </span>
+                                  </p>
+                                  <p className="text-end">
+                                    <span className="text-red">
+                                      {transaction.amount}
+                                    </span>
+                                  </p>
+                                </div>
+                              ) : (
+                                <p className="text-small">
+                                  <span className="text-red">
                                     {transaction.change}
                                   </span>
                                 </p>
-                                <p className="text-end">
-                                  <span className="text-red">
-                                    {transaction.amount}
-                                  </span>
-                                </p>
-                              </div>
-                            ) : (
-                              <p className="text-small">
-                                <span className="text-red">
-                                  {transaction.change}
-                                </span>
-                              </p>
-                            )}
-                          </div>
-                        </Link>
-                      </li>
-                    )
-                  )}
-                </ul>
+                              )}
+                            </div>
+                          </Link>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                ) : (
+                  <p className="text-center text-secondary mt-6">History Not Found</p>
+                )}
               </div>
               {/* <div className="tab-pane fade" id="market" role="tabpanel">
                 <ul>

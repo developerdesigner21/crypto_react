@@ -70,7 +70,7 @@ const ExchangePlusSection: React.FC = () => {
                                 </div>
                                 {/* Content Wrap */}
                                 <div className="tw-flex-1">
-                                    <h5 className="tw-font-bold tw-text-white tw-text-xl tw-mb-1">{item.title}</h5>
+                                    <h5 className="tw-font-bold tw-text-white tw-text-lg sm:tw-text-xl tw-mb-1">{item.title}</h5>
                                     <p className="tw-text-gray-400 tw-text-base">{item.description}</p>
                                 </div>
                             </div>

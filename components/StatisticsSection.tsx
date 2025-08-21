@@ -81,38 +81,38 @@ const StatisticItem: React.FC<StatisticItemProps> = ({
         >
             {value}
         </p>
-        <p className="tw-text-light-text tw-text-lg">{label}</p>
+        <p className="tw-text-light-text tw-text-base sm:tw-text-lg">{label}</p>
     </motion.div>
 );
 
 const StatisticsSection: React.FC = () => {
     return (
         <motion.section
-            className="tw-bg-dark-background tw-text-white tw-py-16 sm:tw-py-20 lg:tw-py-24 tw-px-4 tw-font-inter tw-overflow-hidden"
+            className="tw-bg-dark-background tw-text-white tw-py-8 sm:tw-py-20 lg:tw-py-24 tw-px-4 tw-font-inter tw-overflow-hidden"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }} // Animate when 30% of section is visible
             variants={sectionVariants}
         >
-            <div className="tw-max-w-7xl tw-mx-auto tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-12 lg:tw-gap-16 tw-items-center">
+            <div className="tw-max-w-7xl tw-mx-auto tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-4 sm:tw-gap-12 lg:tw-gap-16 tw-items-center">
                 {/* Left Content Block */}
                 <div className="tw-flex tw-flex-col tw-text-center lg:tw-text-left">
                     <motion.h2
                         variants={itemVariants}
-                        className="tw-text-4xl sm:tw-text-5xl lg:tw-text-6xl tw-font-extrabold tw-leading-tight tw-mb-6"
+                        className="tw-text-[24px] sm:tw-text-5xl lg:tw-text-6xl tw-font-extrabold tw-leading-tight tw-mb-6"
                     >
                         Our statistics over the years
                     </motion.h2>
                     <motion.p
                         variants={itemVariants}
-                        className="tw-text-lg sm:tw-text-xl tw-text-light-text tw-mb-12 tw-max-w-xl tw-mx-auto lg:tw-mx-0"
+                        className="tw-text-base sm:tw-text-xl tw-text-light-text tw-mb-12 tw-max-w-xl tw-mx-auto lg:tw-mx-0"
                     >
                         Follow our remarkable growth journey over the years through
                         comprehensive statistics, reflecting our unwavering dedication to
                         excellence and customer satisfaction.
                     </motion.p>
 
-                    <div className="tw-grid tw-grid-cols-2 tw-gap-y-8 sm:tw-gap-y-12 sm:tw-gap-x-8 tw-text-left">
+                    <div className="tw-grid tw-grid-cols-2 tw-gap-y-8 sm:tw-gap-y-12 sm:tw-gap-x-8 tw-text-center lg:tw-text-left">
                         <StatisticItem value="250+" label="Happy Clients" />
                         <StatisticItem
                             value="90%"
@@ -129,7 +129,7 @@ const StatisticsSection: React.FC = () => {
                 </div>
 
                 {/* Right Visual Block - Crypto Cards */}
-                <div className="tw-relative tw-w-full tw-h-[450px] sm:tw-h-[550px] lg:tw-h-[600px] tw-flex tw-justify-center tw-items-center">
+                <div className="tw-relative tw-w-full tw-h-[350px] sm:tw-h-[400px] lg:tw-h-[600px] tw-flex tw-justify-center tw-items-center">
                     {/* Large Card (Bitcoin, Ethereum, Litecoin, Binance) */}
                     <motion.div
                         variants={cardVariants}

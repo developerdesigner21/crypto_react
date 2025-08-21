@@ -35,7 +35,7 @@ const BrandScroller: React.FC = () => {
     const duplicatedLogos = [...brandLogos, ...brandLogos];
 
     return (
-        <div className='tw-pt-[75px] tw-bg-[#0a0a0a]'>
+        <div className='tw-pt-[50px] sm:tw-pt-[75px] tw-bg-[#0a0a0a]'>
             <section
                 className="tw-relative tw-w-full tw-overflow-hidden
                  tw-bg-gradient-to-r tw-from-[#DFFF5B] tw-to-[#00CED1]

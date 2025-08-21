@@ -130,8 +130,8 @@ const CryptoCard: React.FC<CryptoCardProps> = ({ crypto, livePrice }) => {
         // The entire card is now an anchor <a> element, making the whole area clickable.
         <a
             href={`/start-boarding`} // Dynamic link for redirection
-            className="tw-relative tw-flex tw-flex-col tw-items-center tw-p-8 tw-pt-16 tw-rounded-[40px] tw-bg-coiner-card-bg-primary tw-text-white
-                 tw-w-[320px] tw-h-[450px] tw-overflow-hidden tw-group tw-cursor-pointer
+            className="tw-relative tw-flex tw-flex-col tw-items-center p-4 sm:tw-p-8 tw-pt-16 tw-rounded-[40px] tw-bg-coiner-card-bg-primary tw-text-white
+                 tw-w-[250px] tw-h-[380px] sm:tw-w-[320px] sm:tw-h-[450px] tw-overflow-hidden tw-group tw-cursor-pointer
                  tw-transition-transform tw-duration-300 tw-ease-in-out tw-hover:tw-scale-[1.03] tw-hover:tw-shadow-2xl"
             aria-label={`View details for ${crypto.name}`} // Accessibility label for the entire card link
         >
@@ -171,7 +171,7 @@ const CryptoCard: React.FC<CryptoCardProps> = ({ crypto, livePrice }) => {
 
                 {/* Buy Now "Button" - now a span for styling, not a separate interactive element (<a> or <button>) */}
                 {/* It acts as a visual cue but is part of the parent card's clickable area, adhering to HTML validity. */}
-                <div className="tw-mt-8 tw-w-full">
+                <div className="tw-mt-4 sm:tw-mt-8 tw-w-full">
                     <span
                         className="tw-inline-flex tw-items-center tw-justify-center tw-px-8 tw-py-3 tw-rounded-full tw-text-white tw-text-base tw-font-medium
                        tw-border-[1.5px] tw-border-coiner-yellow-green/60 tw-group-hover:tw-bg-coiner-yellow-green/10
@@ -244,20 +244,20 @@ const PopularCryptocurrencies: React.FC = () => {
 
     return (
         <section
-            className="tw-py-[100px] tw-px-[30px] tw-bg-coiner-main-bg-dark tw-font-sans tw-overflow-hidden tw-relative"
+            className="tw-py-[40px] sm:tw-py-[100px] tw-px-[30px] tw-bg-coiner-main-bg-dark tw-font-sans tw-overflow-hidden tw-relative"
         >
             {/* Section Heading and Description */}
             <div className="tw-text-center tw-mb-16 tw-px-4">
-                <h2 className="tw-text-white tw-text-4xl sm:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-mb-4">
-                    Popular cryptocurrencies
+                <h2 className="tw-text-white tw-text-[24px] sm:tw-text-5xl lg:tw-text-6xl tw-font-bold tw-mb-4">
+                    Popular crypto currencies
                 </h2>
-                <p className="tw-text-white/80 tw-text-lg sm:tw-text-xl tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
+                <p className="tw-text-white/80 tw-text-base sm:tw-text-lg sm:tw-text-xl tw-max-w-3xl tw-mx-auto tw-leading-relaxed">
                     Explore a variety of popular cryptocurrencies on our platform, empowering you to diversify your portfolio and stay ahead
                 </p>
             </div>
 
             {/* Crypto Card Slider Container */}
-            <div className="tw-relative tw-overflow-hidden tw-w-full tw-py-8">
+            <div className="tw-relative tw-overflow-hidden tw-w-full sm:tw-py-8">
                 {/* Left fade overlay */}
                 <div className="tw-absolute tw-inset-y-0 tw-left-0 tw-w-24 tw-bg-gradient-to-r tw-from-coiner-main-bg-dark tw-to-transparent tw-z-10 tw-pointer-events-none"></div>
                 {/* Right fade overlay */}

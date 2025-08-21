@@ -7,38 +7,38 @@ export const people = [
 ];
 
 export const transactions = [
-  {
-    src: "/images/coin/coin-1.jpg",
-    alt: "img",
-    title: "Bitcoin",
-    time: "11:34 AM",
-    change: "+ BTC 0.0056",
-    amount: "- $950.50",
-  },
-  {
-    src: "/images/coin/coin-2.jpg",
-    alt: "img",
-    title: "Withdraw",
-    time: "1:12 PM",
-    change: "- 2,700.00",
-    amount: null,
-  },
-  {
-    src: "/images/coin/coin-3.jpg",
-    alt: "img",
-    title: "Ethereum",
-    time: "12:00 AM",
-    change: "+ ETH 1,498",
-    amount: "- $12948,68",
-  },
-  {
-    src: "/images/coin/coin-4.jpg",
-    alt: "img",
-    title: "Anchor",
-    time: "12:00 AM",
-    change: "+ ETH 1,498",
-    amount: "- $12948,68",
-  },
+  // {
+  //   src: "/images/coin/coin-1.jpg",
+  //   alt: "img",
+  //   title: "Bitcoin",
+  //   time: "11:34 AM",
+  //   change: "+ BTC 0.0056",
+  //   amount: "- $950.50",
+  // },
+  // {
+  //   src: "/images/coin/coin-2.jpg",
+  //   alt: "img",
+  //   title: "Withdraw",
+  //   time: "1:12 PM",
+  //   change: "- 2,700.00",
+  //   amount: null,
+  // },
+  // {
+  //   src: "/images/coin/coin-3.jpg",
+  //   alt: "img",
+  //   title: "Ethereum",
+  //   time: "12:00 AM",
+  //   change: "+ ETH 1,498",
+  //   amount: "- $12948,68",
+  // },
+  // {
+  //   src: "/images/coin/coin-4.jpg",
+  //   alt: "img",
+  //   title: "Anchor",
+  //   time: "12:00 AM",
+  //   change: "+ ETH 1,498",
+  //   amount: "- $12948,68",
+  // },
 ];
 
 export const coinsData = [
