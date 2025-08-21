@@ -1,42 +1,67 @@
-import Link from "next/link";
-import React from "react";
+"use client";
 
-import type { Metadata } from "next";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export const metadata: Metadata = {
-  title: "Success || Backedby Quantum crypto app",
-  description: "Backedby Quantum crypto app",
-};
+export default function AuthSuccess() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-const Page: React.FC = () => {
-  return (
-    <div className="bg-camera">
-      <div className="tf-container">
-        <div className="pt-30 pb-30">
-          <div className="success_box">
-            <div className="icon-1 ani3">
-              <span className="circle-box lg bg-circle check-icon bg-primary" />
-            </div>
-            <div className="icon-2 ani5">
-              <span className="circle-box md bg-primary" />
-            </div>
-            <div className="icon-3 ani8">
-              <span className="circle-box md bg-primary" />
-            </div>
-            <div className="icon-4 ani2">
-              <span className="circle-box sm bg-primary" />
-            </div>
-            <h2 className="text-surface text-center">Successful!</h2>
-            <p className="text-large text-center mt-8">
-              Your personal information has been verified
-            </p>
-            <Link href={`/home`} className="tf-btn lg primary mt-40">
-              Done
-            </Link>
-          </div>
+  useEffect(() => {
+    const token = searchParams.get("token");
+    const error = searchParams.get("error");
+
+    if (error) {
+      setError(error);
+      setIsLoading(false);
+      return;
+    }
+
+    if (token) {
+      try {
+        // Save token in localStorage
+        localStorage.setItem("token", token);
+        
+        // Redirect to dashboard after successful authentication
+        setTimeout(() => {
+          router.push("/home");
+        }, 1000);
+      } catch (err) {
+        setError("Failed to save authentication data");
+        setIsLoading(false);
+      }
+    } else {
+      setError("No authentication token received");
+      setIsLoading(false);
+    }
+  }, [searchParams, router]);
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Authentication Error</h1>
+          <p className="text-gray-300 mb-6">{error}</p>
+          <button
+            onClick={() => router.push("/log-in")}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Try Again
+          </button>
         </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold text-white mb-4">Authentication Successful!</h1>
+        <p className="text-gray-300 mb-6">Logging you in...</p>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
       </div>
     </div>
   );
-};
-export default Page;
+}
