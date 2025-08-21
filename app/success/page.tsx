@@ -1,9 +1,9 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
-export default function AuthSuccess() {
+function Auth() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -64,4 +64,12 @@ export default function AuthSuccess() {
       </div>
     </div>
   );
+}
+
+export default function AuthSuccess() {
+  return(
+    <Suspense>
+       <Auth />
+    </Suspense>
+  )
 }
