@@ -22,7 +22,7 @@ const cryptoServices: CryptoService[] = [
     { name: "Meta Mask", logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3ymr3UNKopfI0NmUY95Dr-0589vG-91KuAA&s' },
     { name: "Crypto.com | Defi wallet", logo: 'https://play-lh.googleusercontent.com/BoiXD2RIG2Bk-xsz4jhlmTznlAPgOAsJhtbi4mbApNX1oGJiSPlhmRkM7T-i9CaBX_E' },
     { name: "Pillar", logo: 'https://play-lh.googleusercontent.com/9nnmrnE-K2Aez5gY_vco8wfQaYxBPjOdUoInE7LlG-gyNsfN6zYOa0UKEj9UvxcLiBp4=w240-h480-rw' },
-    { name: "BiyPay", logo: 'https://pbs.twimg.com/profile_images/750715284298862596/hgLKxRsO_400x400.jpg' },
+    { name: "BitPay", logo: 'https://pbs.twimg.com/profile_images/750715284298862596/hgLKxRsO_400x400.jpg' },
     { name: "Arculus wallet", logo: ArculusLogo },
 ];
 
