@@ -6,6 +6,7 @@ import GoBackButton from "./BackButton";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import apiClient from "@/lib/axios-config";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 export default function UserInfo() {
   const router = useRouter();
   const [user, setUser] = useState<any>();
@@ -361,13 +362,13 @@ export default function UserInfo() {
             </ul>
           </div>
         </div>
-        <div className="bg-menuDark tf-container">
+        <div className="bg-menuDark tf-container" style={{ marginBottom: "72px" }}>
           <div className="pt-12 pb-12 mt-4">
             <h5>Exchange</h5>
             <ul className="mt-16 grid-3 gap-12">
               <li>
                 <a
-                  href="#"
+                  href="/swap"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
                 >
                   <i className="icon icon-convert" />
@@ -376,7 +377,7 @@ export default function UserInfo() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/minings/index"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
                 >
                   <i className="icon icon-metalogo" />
@@ -385,14 +386,14 @@ export default function UserInfo() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/deposit"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
                 >
                   <i className="icon icon-bank" />
                   Deposit
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   href="#"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
@@ -400,8 +401,8 @@ export default function UserInfo() {
                   <i className="icon icon-fileText" />
                   Futures contract
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <a
                   href="#"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
@@ -409,8 +410,8 @@ export default function UserInfo() {
                   <i className="icon icon-graph" />
                   Ageless
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <a
                   href="#"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
@@ -418,10 +419,10 @@ export default function UserInfo() {
                   <i className="icon icon-grid-nine" />
                   Choice
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a
-                  href="#"
+                  href="/investments/index"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
                 >
                   <i className="icon icon-game-control" />
@@ -431,6 +432,14 @@ export default function UserInfo() {
               <li>
                 <a
                   href="#"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    const bootstrap = await import("bootstrap");
+                    const botModalEl = document.getElementById("modalBot");
+                    if (!botModalEl) return;
+                    const myBotModal = new bootstrap.Modal(botModalEl);
+                    myBotModal.show();
+                  }}
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
                 >
                   <i className="icon icon-robot" />
@@ -439,7 +448,7 @@ export default function UserInfo() {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/deposit/confirm"
                   className="tf-list-item d-flex flex-column gap-8 align-items-center text-break text-center"
                 >
                   <i className="icon icon-database" />
@@ -449,7 +458,32 @@ export default function UserInfo() {
             </ul>
           </div>
         </div>
-        <div className="bg-menuDark tf-container" style={{ marginBottom: "64px" }}>
+        <div
+          className="modal fade modalCenter"
+          id="modalBot"
+          tabIndex={-1}
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content rounded-lg shadow-lg border-0 text-center" style={{ padding: "24px" }}>
+              <AiOutlineCloseCircle className="mx-auto text-red-500" size={80} />
+              <h4>Action Disabled</h4>
+              <p className="mt-8 text-large">
+                This Action is disabled Coming Soon.
+              </p>
+              <div style={{ display: 'inline-flex', marginTop: '20px', width: 'auto', textAlign: 'center', justifyContent: 'center' }}>
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  style={{ width: 'auto' }}
+                >
+                  Okay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="bg-menuDark tf-container" style={{ marginBottom: "64px" }}>
           <div className="pt-12 pb-12 mt-4">
             <h5>Help center</h5>
             <ul className="mt-16 grid-3 gap-12">
@@ -473,7 +507,7 @@ export default function UserInfo() {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
         {/* <div className="bg-menuDark tf-container">
           <a
             href="#"
