@@ -6,7 +6,6 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 
-
 // Typing the props for the component
 interface RootLayoutProps {
   children: ReactNode; // `children` can be any valid React node (JSX, string, number, etc.)
@@ -66,6 +65,29 @@ export default function RootLayout({ children }: RootLayoutProps) {
           theme="dark"
         />
       </body>
+            {/* Google Analytics */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-QGB938VTGP"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-QGB938VTGP');
+        `}
+      </Script>
+      {/* Microsoft Clarity */}
+      <Script id="clarity" strategy="afterInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "tdo07hpdda");
+        `}
+      </Script>
     </html>
   );
 }
