@@ -107,13 +107,13 @@ export default function MyWallet() {
             </li>
             <li>
               <Link
-                href={`/swap`}
+                href={`/deposit`}
                 className="tf-list-item d-flex flex-column gap-8 align-items-center"
               >
                 <span className="box-round bg-surface d-flex justify-content-center align-items-center">
-                  <AiOutlineSwap style={{ width: '32px', height: '32px' }} className="text-white" />
+                  <i className="icon icon-way2" />
                 </span>
-                Swap
+                Receive
               </Link>
             </li>
             <li>
@@ -127,18 +127,18 @@ export default function MyWallet() {
                 Send
               </Link>
             </li>
-            {/* <li>
+             <li>
               <Link
-                href={`/deposit`}
+                href={`/swap`}
                 className="tf-list-item d-flex flex-column gap-8 align-items-center"
               >
                 <span className="box-round bg-surface d-flex justify-content-center align-items-center">
-                  <i className="icon icon-way2" />
+                  <AiOutlineSwap style={{ width: '32px', height: '32px' }} className="text-white" />
                 </span>
-                Receive
+                Swap
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href={`/linkwallet`}
                 className="tf-list-item d-flex flex-column gap-8 align-items-center"
@@ -149,20 +149,10 @@ export default function MyWallet() {
                 Backup
               </Link>
             </li> */}
-            <li>
-              <Link
-                href={`/linkwallet`}
-                className="tf-list-item d-flex flex-column gap-8 align-items-center"
-              >
-                <span className="box-round bg-surface d-flex justify-content-center align-items-center">
-                  <MdBackup style={{ width: '32px', height: '32px' }} className="text-white" />
-                </span>
-                Backup
-              </Link>
-            </li>
+            
           </ul>
           <ul className="mt-16 grid-4 m--16">
-            <li>
+            {/* <li>
               <Link
                 href='#'
                 onClick={async (e) => {
@@ -179,6 +169,17 @@ export default function MyWallet() {
                   <FaRobot style={{ width: '32px', height: '32px' }} className="text-white" />
                 </span>
                 Bot
+              </Link>
+            </li> */}
+            <li>
+              <Link
+                href={`/linkwallet`}
+                className="tf-list-item d-flex flex-column gap-8 align-items-center"
+              >
+                <span className="box-round bg-surface d-flex justify-content-center align-items-center">
+                  <MdBackup style={{ width: '32px', height: '32px' }} className="text-white" />
+                </span>
+                Backup
               </Link>
             </li>
             <li>

@@ -64,7 +64,7 @@ export default function CoinPage({ params }: { params: Promise<{ name: string }>
       </div>
       <div className="tw-my-16 tw-flex tw-flex-row tw-gap-[16px] tw-justify-center">
       <Link
-          href={`/deposits`}
+          href={`/deposit`}
           className="tf-list-item tw-w-[72px] tw-d-flex tw-flex-column tw-gap-[12px] tw-align-items-center tw-border-2 tw-border-solid tw-p-2 tw-rounded-lg"
         >
           <span className="tw-bg-surface tw-d-flex tw-justify-content-center tw-align-items-center tw-flex tw-justify-center tw-items-center">

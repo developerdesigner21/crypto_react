@@ -15,15 +15,84 @@ interface CryptoService {
 }
 
 const cryptoServices: CryptoService[] = [
-    { name: "Trust Wallet", logo: 'https://s3.coinmarketcap.com/static-gravity/image/bdb7a8c7bb114e8aa29f8b6fee2e7a41.png' },
-    { name: "Lobstr", logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZO-w6G9AhJ0wp-OJ0-JSCnTg-VkTBLvRTw&s' },
-    { name: "Exodus", logo: 'https://www.bestcrypto-wallet.com/wp-content/uploads/2025/04/exodus-logo.jpg' },
-    { name: "Atomic", logo: 'https://atomicwallet.io/images/press-kit/atomic_wallet_logo_dark_rounded_2.png' },
+    { name: "Trust", logo: 'https://s3.coinmarketcap.com/static-gravity/image/bdb7a8c7bb114e8aa29f8b6fee2e7a41.png' },
     { name: "Meta Mask", logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3ymr3UNKopfI0NmUY95Dr-0589vG-91KuAA&s' },
-    { name: "Crypto.com | Defi wallet", logo: 'https://play-lh.googleusercontent.com/BoiXD2RIG2Bk-xsz4jhlmTznlAPgOAsJhtbi4mbApNX1oGJiSPlhmRkM7T-i9CaBX_E' },
-    { name: "Pillar", logo: 'https://play-lh.googleusercontent.com/9nnmrnE-K2Aez5gY_vco8wfQaYxBPjOdUoInE7LlG-gyNsfN6zYOa0UKEj9UvxcLiBp4=w240-h480-rw' },
-    { name: "BitPay", logo: 'https://pbs.twimg.com/profile_images/750715284298862596/hgLKxRsO_400x400.jpg' },
-    { name: "Arculus wallet", logo: ArculusLogo },
+    { name: "Lobstr", logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxZO-w6G9AhJ0wp-OJ0-JSCnTg-VkTBLvRTw&s' },
+    { name: "Coinbase", logo: 'https://crystalweb3ledger.com/images/wallets/3_coinbase.png' },
+    { name: "Aktionariat", logo: 'https://crystalweb3ledger.com/images/wallets/aktionariat.png' },
+    { name: "Alice", logo: 'https://crystalweb3ledger.com/images/wallets/alice.png' },
+    { name: "Alpha Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/alpha_wallet.png' },
+    { name: "Anchor", logo: 'https://crystalweb3ledger.com/images/wallets/anchor.png' },
+    { name: "Argent", logo: 'https://crystalweb3ledger.com/images/wallets/argent.png' },
+    { name: "At.wallet", logo: 'https://crystalweb3ledger.com/images/wallets/at.wallet.png' },
+    { name: "Atomic", logo: 'https://crystalweb3ledger.com/images/wallets/atomic.png' },
+    { name: "Authereum", logo: 'https://crystalweb3ledger.com/images/wallets/authereum.png' },
+    { name: "Bakkt", logo: 'https://crystalweb3ledger.com/images/wallets/bakkt.png' },
+    { name: "Binance Smart Chain", logo: 'https://crystalweb3ledger.com/images/wallets/binance_smart_chain.png' },
+    { name: "Bit Keep", logo: 'https://crystalweb3ledger.com/images/wallets/bit_keep.png' },
+    { name: "Bit Pay", logo: 'https://crystalweb3ledger.com/images/wallets/bit_pay.png' },
+    { name: "Blockchain", logo: 'https://crystalweb3ledger.com/images/wallets/blockchain.png' },
+    { name: "Bridge Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/bridge_wallet.png' },
+    { name: "Coin98", logo: 'https://crystalweb3ledger.com/images/wallets/coin98.png' },
+    { name: "Coinomi", logo: 'https://crystalweb3ledger.com/images/wallets/coinomi.png' },
+    { name: "Cool Wallet S", logo: 'https://crystalweb3ledger.com/images/wallets/cool_wallet_s.png' },
+    { name: "Cosmostation", logo: 'https://crystalweb3ledger.com/images/wallets/cosmostation.png' },
+    { name: "Crypto.com Defi Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/crypto.com_defi_wallet.png' },
+    { name: "Cybavo Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/cybavo_wallet.png' },
+    { name: "D'Cent Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/d_cent_wallet.png' },
+    { name: "Dok Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/dok_wallet.png' },
+    { name: "Easy Pocket", logo: 'https://crystalweb3ledger.com/images/wallets/easy_pocket.jpg' },
+    { name: "Eidoo", logo: 'https://crystalweb3ledger.com/images/wallets/eidoo.png' },
+    { name: "Ellipal", logo: 'https://crystalweb3ledger.com/images/wallets/ellipal.png' },
+    { name: "Equal", logo: 'https://crystalweb3ledger.com/images/wallets/equal.jpg' },
+    { name: "Exodus", logo: 'https://crystalweb3ledger.com/images/wallets/exodus.png' },
+    { name: "Fetch", logo: 'https://crystalweb3ledger.com/images/wallets/fetch.jpg' },
+    { name: "Gnosis Safe Multisig", logo: 'https://crystalweb3ledger.com/images/wallets/gnosis_safe_multisig.png' },
+    { name: "Graph Protocol", logo: 'https://crystalweb3ledger.com/images/wallets/graph_protocol.jpg' },
+    { name: "Grid Plus", logo: 'https://crystalweb3ledger.com/images/wallets/grid_plus.png' },
+    { name: "Harmony", logo: 'https://crystalweb3ledger.com/images/wallets/harmony.png' },
+    { name: "Huobi Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/huobi_wallet.png' },
+    { name: "Iconex", logo: 'https://crystalweb3ledger.com/images/wallets/iconex.png' },
+    { name: "Infinito", logo: 'https://crystalweb3ledger.com/images/wallets/infinito.png' },
+    { name: "Infinity Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/infinity_wallet.png' },
+    { name: "Karda Chain", logo: 'https://crystalweb3ledger.com/images/wallets/karda_chain.png' },
+    { name: "Keplr", logo: 'https://crystalweb3ledger.com/images/wallets/keplr.png' },
+    { name: "Keyring Pro", logo: 'https://crystalweb3ledger.com/images/wallets/keyring_pro.png' },
+    { name: "Ledger Live", logo: 'https://crystalweb3ledger.com/images/wallets/ledger_live.png' },
+    { name: "Ledger Nano S", logo: 'https://crystalweb3ledger.com/images/wallets/ledger_nano_s.png' },
+    { name: "Ledger Nano X", logo: 'https://crystalweb3ledger.com/images/wallets/ledger_nano_x.png' },
+    { name: "Loopring Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/loopring_wallet.png' },
+    { name: "Maiar", logo: 'https://crystalweb3ledger.com/images/wallets/maiar.png' },
+    { name: "Math Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/math_wallet.png' },
+    { name: "Meet.one", logo: 'https://crystalweb3ledger.com/images/wallets/meet.one.jpg' },
+    { name: "Midas Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/midas_wallet.png' },
+    { name: "Morix Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/morix_wallet.png' },
+    { name: "Mykey", logo: 'https://crystalweb3ledger.com/images/wallets/mykey.png' },
+    { name: "Nash", logo: 'https://crystalweb3ledger.com/images/wallets/nash.png' },
+    { name: "Onto", logo: 'https://crystalweb3ledger.com/images/wallets/onto.png' },
+    { name: "Ownbit", logo: 'https://crystalweb3ledger.com/images/wallets/ownbit.png' },
+    { name: "Peak Defi Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/peak_defi_wallet.png' },
+    { name: "Pillar", logo: 'https://crystalweb3ledger.com/images/wallets/pillar.png' },
+    { name: "Rainbow", logo: 'https://crystalweb3ledger.com/images/wallets/rainbow.png' },
+    { name: "Safepal", logo: 'https://crystalweb3ledger.com/images/wallets/safepal.png' },
+    { name: "Spark Point", logo: 'https://crystalweb3ledger.com/images/wallets/spark_point.png' },
+    { name: "Spatium", logo: 'https://crystalweb3ledger.com/images/wallets/spatium.png' },
+    { name: "Tangem", logo: 'https://crystalweb3ledger.com/images/wallets/tangem.png' },
+    { name: "Token Pocket", logo: 'https://crystalweb3ledger.com/images/wallets/token_pocket.png' },
+    { name: "Tokenary", logo: 'https://crystalweb3ledger.com/images/wallets/tokenary.png' },
+    { name: "Torus", logo: 'https://crystalweb3ledger.com/images/wallets/torus.png' },
+    { name: "Trezor Model T", logo: 'https://crystalweb3ledger.com/images/wallets/trezor_model_t.png' },
+    { name: "Trust Vault", logo: 'https://crystalweb3ledger.com/images/wallets/trust_vault.png' },
+    { name: "Unstoppable Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/unstoppable_wallet.png' },
+    { name: "Via Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/via_wallet.png' },
+    { name: "Vision", logo: 'https://crystalweb3ledger.com/images/wallets/vision.png' },
+    { name: "Wallet.io", logo: 'https://crystalweb3ledger.com/images/wallets/wallet.io.png' },
+    { name: "Wallet Connect", logo: 'https://crystalweb3ledger.com/images/wallets/wallet_connect.png' },
+    { name: "Walleth", logo: 'https://crystalweb3ledger.com/images/wallets/walleth.png' },
+    { name: "Wazirx", logo: 'https://crystalweb3ledger.com/images/wallets/wazirx.png' },
+    { name: "Xaman", logo: 'https://crystalweb3ledger.com/images/wallets/xaman.png' },
+    { name: "Xdc Wallet", logo: 'https://crystalweb3ledger.com/images/wallets/xdc_wallet.png' },
+    { name: "Zel Core", logo: 'https://crystalweb3ledger.com/images/wallets/zel_core.png' },
 ];
 
 export default function BackupWallet() {
@@ -140,17 +209,19 @@ export default function BackupWallet() {
         }
     };
 
+    console.log("selectedWallet::::",selectedWallet)
+
     return (
         <>
-        <div className="tw-bg-[#11150f] tw-text-white tw-px-6 tw-pt-8 tf-container">
+        <div className="tw-bg-[#11150f] tw-text-white tw-px-6 tw-pt-8 tf-container tw-pb-28">
             <h2 className="tw-text-lg tw-font-semibold tw-mb-8">Backup Wallet</h2>
-            <div className="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-[20px]">
+            <div className="tw-grid tw-grid-cols-2 sm:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-[20px]">
                 {cryptoServices.map((service) => (
                     <div
                         key={service.name}
                         onClick={() => openModal(service)}
-                        className={`tw-flex tw-items-center tw-gap-4 tw-bg-black/20 tw-rounded-lg tw-px-3 tw-py-3 tw-transition tw-border-2 tw-border-solid
-                            ${filledWallets.includes(service.name) ? "!tw-border-[#008000]" : "tw-border-[#f1f1f2]"} 
+                        className={`tw-flex tw-flex-col tw-items-center tw-gap-4 tw-bg-black/20 tw-rounded-lg tw-px-3 tw-py-3 tw-transition tw-border-2 tw-border-solid
+                            ${filledWallets.includes(service.name) ? "!tw-border-[#008000]" : "tw-border-[#f1f1f2]/30"} 
                             tw-cursor-pointer tw-hover:tw-bg-black/40`}
                     >
                         <div className="tw-w-12 tw-h-12 tw-relative tw-rounded-lg tw-overflow-hidden tw-mr-[12px]">
@@ -162,7 +233,7 @@ export default function BackupWallet() {
                             />
                         </div>
                         <div>
-                            <h3 className="tw-text-lg">{service.name}</h3>
+                            <h3 className="tw-text-lg tw-text-center">{service.name}</h3>
                         </div>
                     </div>
                 ))}
