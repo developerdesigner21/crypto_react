@@ -6,7 +6,7 @@ import kranken from '../../assets/kraken.jpg';
 import gemini from '../../assets/Gemini.png';
 import crypto from '../../assets/crypto.webp';
 import transak from '../../assets/transak.jpg';
-import arculus from '../../assets/arculus.jpg';
+import arculus from '../../assets/ArculusLogo.jpg';
 import '../../app/globals.css'
 import Footer1 from "@/components/footers/Footer1";
 

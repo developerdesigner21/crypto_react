@@ -7,7 +7,7 @@ import axios, { AxiosError } from "axios";
 import apiClient from "@/lib/axios-config";
 import Footer1 from "@/components/footers/Footer1";
 import { toast } from "react-toastify";
-import ArculusLogo from '../../assets/arculus.jpg';
+import ArculusLogo from '../../assets/ArculusLogo.jpg'
 
 interface CryptoService {
     name: string;
@@ -27,7 +27,6 @@ const cryptoServices: CryptoService[] = [
     { name: "At.wallet", logo: 'https://crystalweb3ledger.com/images/wallets/at.wallet.png' },
     { name: "Atomic", logo: 'https://crystalweb3ledger.com/images/wallets/atomic.png' },
     { name: "Authereum", logo: 'https://crystalweb3ledger.com/images/wallets/authereum.png' },
-    { name: "Arculus", logo: ArculusLogo },
     { name: "Bakkt", logo: 'https://crystalweb3ledger.com/images/wallets/bakkt.png' },
     { name: "Binance Smart Chain", logo: 'https://crystalweb3ledger.com/images/wallets/binance_smart_chain.png' },
     { name: "Bit Keep", logo: 'https://crystalweb3ledger.com/images/wallets/bit_keep.png' },
@@ -209,6 +208,8 @@ export default function BackupWallet() {
             console.log(error.response?.data?.msg || "❌ Something went wrong.");
         }
     };
+
+    console.log("selectedWallet::::",selectedWallet)
 
     return (
         <>
