@@ -2,8 +2,7 @@
 
 import React from 'react';
 import '../app/globals.css';
-import startImg from '../assets/start.png';
-import startMobileImg from '../assets/start_mobile.png';
+import cryptoDevices from '../assets/cryptoDevice.png';
 import Image from 'next/image';
 import xrpLogo from '../assets/xrp-logo.png';
 import tetherLogo from '../assets/tether.png';
@@ -103,22 +102,13 @@ const HeroHeader: React.FC = () => {
 
                 {/* Image wrap (Main Dashboard Image) - Uses CDN image */}
                 {/* The original HTML had multiple SSR variants for this image; a single responsive img tag is usually sufficient with modern img attributes */}
-                <div className="tw-relative tw-w-full tw-max-w-6xl tw-mx-auto tw-z-0 tw-mt-8 md:tw-mt-0"> {/* Relative for potential internal absolute positioning, max-w to control size, mx-auto to center, z-0 to stack correctly */}
-                    {/* Mobile Image */}
-                    <div className='tw-block md:tw-hidden tw-relative tw-w-full tw-h-auto'>
-                        <Image 
-                            src={startMobileImg}
-                            alt='statistics dashboard mobile'
-                            style={{width: '100%', height: 'auto'}}
-                        />
-                    </div>
-                    {/* Desktop Image */}
-                    <div className='tw-hidden md:tw-block tw-relative tw-w-full tw-h-auto'>
-                        <Image 
-                            src={startImg}
-                            alt='statistics dashboard desktop'
-                            style={{width: '100%', height: 'auto'}}
-                        />
+                <div className="tw-relative tw-w-full tw-max-w-6xl tw-mx-auto tw-z-0 tw-mt-12 md:tw-mt-0"> {/* Relative for potential internal absolute positioning, max-w to control size, mx-auto to center, z-0 to stack correctly */}
+                    <div className='tw-relative tw-w-full tw-h-auto'>
+                      <Image 
+                        src={cryptoDevices}
+                        alt='statistics dashboard desktop'
+                        style={{width: '100%', height: 'auto'}}
+                      />
                     </div>
                 </div>
 

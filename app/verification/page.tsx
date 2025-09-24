@@ -17,7 +17,7 @@ const Page: React.FC = () => {
             <GoBackButton />
           </a>
           <h3>Verification</h3>
-          <a href="#" className="right">
+          <a href="/profile" className="right">
             <i className="icon-question" />
           </a>
         </div>

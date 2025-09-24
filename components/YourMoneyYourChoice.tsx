@@ -3,23 +3,26 @@
 // src/components/YourMoneyYourChoice.tsx
 import { useState } from 'react';
 import '../app/globals.css'
-import btcChart from '../assets/btcChart.png'
+import btcChart from '../assets/btcChart.png';
+import cardImg from '../assets/Card.png';
+import cryptoWallets from '../assets/cryptoWallets.png';
 
 // Data structure for each tab and its associated content
 const tabSections = [
     {
-        id: 'custom-reports',
-        tabTitle: 'Custom reports',
+        id: 'unlock-card',
+        tabTitle: 'Unlock Your Card',
         tabIconSrc: 'https://framerusercontent.com/images/uWwXZ19U5VuSza6Zq9ejPTeJm8.svg', // Pie chart icon
         tabIconAlt: 'Pie chart icon for custom reports',
         tabIconBg: 'tw-bg-icon-reports-bg', // Yellow-green background
-        contentImageSrc: btcChart, // Statistics image
+        contentImageSrc: cardImg, // Statistics image
         contentImageAlt: 'Bar chart showing analytics with income and outcome',
-        mainHeading: "Know exactly what's working and what's not.",
-        description: "Gain valuable insights - track performance with precision, identifying successes and improvements effortlessly.",
+        mainHeading: "Unlock Your Card, Unlock Your Future",
+        description: "Gain access to exclusive rewards and financial power. Choose from premium cards designed to elevate your growth, each offering unmatched value and security.",
         listItems: [
-            "Value at Production Scale",
-            "Assured Governance",
+            "Black Card – Unlock with $20,000 XLM balance",
+            "Silver Card – Unlock with $50,000 XLM balance",
+            "Gold Card – Unlock with $100,000 XLM balance"
         ],
     },
     {
@@ -45,7 +48,7 @@ const tabSections = [
         tabIconAlt: 'Globe icon for global community',
         tabIconBg: 'tw-bg-icon-community-bg', // White background
         // Placeholder image. In a real app, you'd have a specific image for this tab.
-        contentImageSrc: btcChart,
+        contentImageSrc: cryptoWallets,
         contentImageAlt: 'Diverse community members interacting',
         mainHeading: "Connect, learn, and grow with peers.",
         description: "Engage with a diverse, global community of traders and investors. Share insights, gain new perspectives, and enhance your trading journey.",
@@ -142,7 +145,12 @@ const YourMoneyYourChoice: React.FC = () => {
                                     <img
                                         src={currentContent.contentImageSrc.src}
                                         alt={currentContent.contentImageAlt}
-                                        className="tw-w-full tw-h-full tw-object-contain"
+                                        // className="tw-w-full tw-h-full tw-object-contain"
+                                        className={`tw-object-contain ${
+                                          currentContent.id === 'global-community'
+                                            ? 'tw-h-[120%]'
+                                            : 'tw-h-full'
+                                        }`}
                                     />
                                 </div>
                             </div>
