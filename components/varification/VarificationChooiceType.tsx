@@ -1,27 +1,94 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GoBackButton from "../BackButton";
+import { toast } from "react-toastify";
 
 // Define the type for the items in the list
 interface Item {
   label?: string;
-  active?: boolean;
+  value: string;
 }
 
 const items: Item[] = [
-  { label: "Citizen identification", active: true },
-  { label: "Driving license", active: false },
-  { label: "ID card", active: false },
-  { label: "Passport", active: false },
-  { label: "Arc", active: false },
+  { label: "Citizen identification", value: "citizen_id" },
+  { label: "Driving license", value: "driving_license" },
+  { label: "ID card", value: "id_card" },
+  { label: "Passport", value: "passport" },
 ];
 export default function VarificationChooiceType() {
-  const [activeItem, setActiveItem] = useState<Item>({});
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    dob: "",
+    country: "",
+    address: "",
+    idType: "",
+    idImage: null as File | null,
+  });
+
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      setFormData((prev) => ({ ...prev, [name]: file }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: null }));
+    }
+  };
+
+  const handleSelectItem = (item: Item) => {
+    setFormData((prev) => ({ ...prev, idType: item.value }));
+    setErrors((prev) => ({ ...prev, idType: "" }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const domFile = fileInputRef.current?.files?.[0] ?? null;
+    if (domFile) {
+      if (!formData.idImage) {
+        setFormData((prev) => ({ ...prev, idImage: domFile }));
+      }
+    }
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.firstName) newErrors.firstName = "First name is required";
+    if (!formData.lastName) newErrors.lastName = "Last name is required";
+    if (!formData.dob) newErrors.dob = "Date of birth is required";
+    if (!formData.country) newErrors.country = "Country is required";
+    if (!formData.address) newErrors.address = "Address is required";
+    if (!formData.idType) newErrors.idType = "Please select an ID type";
+    if (!formData.idImage) newErrors.idImage = "Please upload ID Image";
+    const finalFile = domFile ?? formData.idImage;
+    if (!(finalFile instanceof File)) {
+      newErrors.idImage = "Please upload ID Image";
+    }
+
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
+    toast.loading("Submitting verification...");
+    await new Promise((res) => setTimeout(res, 1000));
+    toast.dismiss();
+    toast.success("Verification successfully!");
+  };
+
+  const idLabel = items.find((i) => i.value === formData.idType)?.label || "Select ID type";
+
   return (
     <>
       <div className="header fixed-top bg-surface d-flex justify-content-center align-items-center">
-        <a href="#" className="left back-btn">
+        <a href="/verification" className="left back-btn">
           <GoBackButton />
         </a>
         <h3>Verification</h3>
@@ -32,16 +99,80 @@ export default function VarificationChooiceType() {
       <div className="pt-45 pb-16">
         <div className="tf-container">
           <h4 className="mt-4">Choose the type of identification document</h4>
-          <form onSubmit={(e) => e.preventDefault()} className="mt-20">
+          <form onSubmit={handleSubmit} className="mt-20">
             <fieldset>
+              <label className="mb-8">First name</label>
+              <input
+                name="firstName"
+                type="text"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="tf-input mb-8"
+                placeholder="First name"
+              />
+              {errors.firstName && (
+                <p className="text-danger small">{errors.firstName}</p>
+              )}
+            </fieldset>
+            <fieldset className="mt-20">
+              <label className="mb-8">Last name</label>
+              <input
+                name="lastName"
+                type="text"
+                value={formData.lastName}
+                onChange={handleChange}
+                className="tf-input mb-8"
+                placeholder="Last name"
+              />
+              {errors.lastName && (
+                <p className="text-danger small">{errors.lastName}</p>
+              )}
+            </fieldset>
+            <fieldset className="mt-12">
+              <label className="mb-8">Date of birth</label>
+              <input
+                name="dob"
+                type="date"
+                value={formData.dob}
+                onChange={handleChange}
+                className="tf-input mb-8"
+              />
+              {errors.dob && (
+                <p className="text-danger small">{errors.dob}</p>
+              )}
+            </fieldset>
+            <fieldset className="mt-12">
               <label className="mb-8">Country/region of residence</label>
               <div className="select-wrapper">
-                <select className="tf-select">
-                  <option>USA</option>
-                  <option>ENG</option>
-                  <option>INDIA</option>
+                <select
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  className="tf-select"
+                >
+                  <option value="">Select Country</option>
+                  <option value="USA">USA</option>
+                  <option value="ENG">ENG</option>
+                  <option value="INDIA">INDIA</option>
                 </select>
               </div>
+              {errors.country && (
+                <p className="text-danger small">{errors.country}</p>
+              )}
+            </fieldset>
+            <fieldset className="mt-12">
+              <label className="mb-8">Address</label>
+              <input
+                name="address"
+                type="text"
+                value={formData.address}
+                onChange={handleChange}
+                className="tf-input"
+                placeholder="Street address"
+              />
+              {errors.address && (
+                <p className="text-danger small">{errors.address}</p>
+              )}
             </fieldset>
             <fieldset className="mt-20">
               <label className="mb-8">Type of identification (ID)</label>
@@ -49,13 +180,29 @@ export default function VarificationChooiceType() {
                 className="select-wrapper"
                 data-bs-toggle="modal"
                 data-bs-target="#identificationID"
+                role="button"
               >
-                <p className="tf-select dom-text">
-                  {activeItem.label ? activeItem.label : "Select ID type"}
-                </p>
+                <p className="tf-select dom-text">{idLabel}</p>
               </div>
+              {errors.idType && (
+                <p className="text-danger small">{errors.idType}</p>
+              )}
             </fieldset>
-            <button className="tf-btn lg primary mt-40">Next</button>
+            <fieldset className="mt-16" style={{display:"flex", flexDirection:"column"}}>
+              <label className="mb-8">Upload ID Image</label>
+              <input
+                name="idImage"
+                type="file"
+                accept="image/*,application/pdf"
+                onChange={handleFileChange}
+                className="tf-input"
+              />
+              {formData.idImage && (
+                <p className="small">Selected file: {(formData.idImage as File).name}</p>
+              )}
+              {errors.idImage && <p className="text-danger small">{errors.idImage}</p>}
+            </fieldset>
+            <button type="submit" className="tf-btn lg primary mt-40">Verify</button>
           </form>
         </div>
       </div>
@@ -66,25 +213,27 @@ export default function VarificationChooiceType() {
               <span>Type of identification (ID)</span>
               <span className="icon-cancel" data-bs-dismiss="modal" />
             </div>
-            <ul className="mt-20 pb-16">
-              {items.map((item, index) => (
-                <li
-                  onClick={() =>
-                    setActiveItem((pre) => (pre == item ? {} : item))
-                  }
-                  key={index}
-                  className={`${index != 0 ? "line-bt" : ""}`}
-                  data-bs-dismiss="modal"
-                >
-                  <div
-                    className={`d-flex justify-content-between gap-8 text-large item-check dom-value   ${
-                      item == activeItem ? " active" : ""
-                    }`}
+            <ul className="pb-16">
+              {items.map((item) => {
+                const active = item.value === formData.idType;
+                return (
+                  <li
+                    onClick={() => handleSelectItem(item)}
+                    key={item.value}
+                    className={`line-bt`}
+                    data-bs-dismiss="modal"
                   >
-                    {item.label} <i className="icon icon-check-circle" />
-                  </div>
-                </li>
-              ))}
+                    <div
+                      className={`d-flex justify-content-between gap-8 text-large item-check dom-value ${
+                        active ? " active" : ""
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {active ? <i className="icon icon-check-circle" /> : <i />}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

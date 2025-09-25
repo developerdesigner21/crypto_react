@@ -7,24 +7,60 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import apiClient from "@/lib/axios-config";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+
+type CardColor = "black" | "silver" | "gold" ;
+
+const cardStyles: Record<CardColor, {
+  background: string;
+  circleTopRight: string;
+  circleBottomLeft: string;
+  depositAddress: string;
+  xlmAmount: string;
+}> = {
+  black: {
+    background: "linear-gradient(135deg, #2b2b2b 0%, #121212 45%, #3a3a3a 100%)",
+    circleTopRight: "rgba(255,255,255,0.03)",
+    circleBottomLeft: "rgba(255,255,255,0.03)",
+    depositAddress: "GACMPQFBN6ZRTH4LZZVWB4XEFJEXYAP6U",
+    xlmAmount: "$20,000",
+  },
+  silver: {
+    background: "linear-gradient(135deg, #d5d5dbff 0%, #bcbcbcff 40%, #6f6f70ff 100%)",
+    circleTopRight: "rgba(186, 180, 180, 0.7)",
+    circleBottomLeft: "rgba(0,0,0,0.06)",
+    depositAddress: "K8ZJ4WQPL2MHX7FAN9YVC3DRTSGEB5UO",
+    xlmAmount: "$50,000",
+  },
+  gold: {
+    background: "linear-gradient(135deg, #f6d365 0%, #e8b93a 40%, #b88416 100%)",
+    circleTopRight: "rgba(255,255,255,0.12)",
+    circleBottomLeft: "rgba(0,0,0,0.06)",
+    depositAddress: "R7VQX2LZWFN6PGJ8K3DUB4YAHM5TESC9",
+    xlmAmount: "$1,00,000",
+  },
+};
+
 export default function UserInfo() {
   const router = useRouter();
   const [user, setUser] = useState<any>();
   const [formData, setFormData] = useState({
     depositAddress: "GACMPQFBN6ZRTH4LZZVWB4XEFJEXYAP6U",
-    xlmAmount: "$100,000",
+    xlmAmount: "$20,000",
     name: "",
     email: "",
     phone: "",
     transactionId: "",
-    file: null,
-    agree: false,
+    transactionImg: null as File | null,
   });
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [agree, setAgree] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<CardColor>("black");
+  const current = cardStyles[selectedColor];
 
   const [errors, setErrors] = useState({
     phone: "",
     transactionId: "",
-    file: "",
+    transactionImg: "",
   });
 
   useEffect(() => {
@@ -49,11 +85,24 @@ export default function UserInfo() {
     }
   }, [user]);
 
-  const handleChange = (e: any) => {
-    const { name, value, type, checked, files } = e.target;
+  useEffect(() => {
+    const mapping = cardStyles[selectedColor];
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : type === "file" ? files[0] : value,
+      depositAddress: mapping.depositAddress,
+      xlmAmount: mapping.xlmAmount,
+    }));
+  }, [selectedColor]);
+
+  const handleColorChange = (color: CardColor) => {
+    setSelectedColor(color);
+  };
+
+  const handleChange = (e: any) => {
+    const { name, value, type, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "file" ? files[0] : value,
     }));
     setErrors((prev) => ({
       ...prev,
@@ -66,16 +115,106 @@ export default function UserInfo() {
     let newErrors: any = {};
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
     if (!formData.transactionId.trim()) newErrors.transactionId = "Transaction ID is required";
-    if (!formData.file) newErrors.file = "Please upload a transaction screenshot";
+    if (!formData.transactionImg) newErrors.transactionImg = "Please upload a transaction screenshot";
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
     toast.success("Successfully submitted!");
   };
 
+  // const handleChange = (e: any) => {
+  //   const { name, value, type, files } = e.target;
+  //   if (type === "file") {
+  //     const file = files && files[0] ? files[0] : null;
+  //     setFormData((prev) => ({ ...prev, transactionImg: file }));
+  //     setErrors((prev) => ({ ...prev, transactionImg: "" }));
+  //     if (file) {
+  //       const url = URL.createObjectURL(file);
+  //       setPreviewUrl(url);
+  //     } else {
+  //       setPreviewUrl(null);
+  //     }
+  //     return;
+  //   }
+  //   setFormData((prev) => ({ ...prev, [name]: value }));
+  //   setErrors((prev) => ({ ...prev, [name]: "" }));
+  // };
+
+  // useEffect(() => {
+  //   return () => {
+  //     if (previewUrl) URL.revokeObjectURL(previewUrl);
+  //   };
+  // }, [previewUrl]);
+
+  // const handleSubmit = async (e: any) => {
+  //   e.preventDefault();
+  //   let newErrors: any = {};
+  //   if (!formData.phone?.trim()) newErrors.phone = "Phone number is required";
+  //   if (!formData.transactionId?.trim()) newErrors.transactionId = "Transaction ID is required";
+  //   if (!formData.transactionImg) newErrors.transactionImg = "Please upload a transaction screenshot";
+  //   setErrors(newErrors);
+  //   if (Object.keys(newErrors).length > 0) return;
+  //   const file = formData.transactionImg;
+  //   if (file) {
+  //     const maxSize = 8 * 1024 * 1024;
+  //     if (file.size > maxSize) {
+  //       setErrors((p: any) => ({ ...p, transactionImg: "File too large (max 8MB)" }));
+  //       return;
+  //     }
+  //     if (!file.type.startsWith("image/")) {
+  //       setErrors((p: any) => ({ ...p, transactionImg: "Only image files allowed" }));
+  //       return;
+  //     }
+  //   }
+  //   try {
+  //     const fd = new FormData();
+  //     fd.append("depositAddress", formData.depositAddress);
+  //     fd.append("xlmAmount", formData.xlmAmount);
+  //     fd.append("name", formData.name);
+  //     fd.append("email", formData.email);
+  //     fd.append("phone", formData.phone);
+  //     fd.append("transactionId", formData.transactionId);
+  //     if (formData.transactionImg) fd.append("transactionImg", formData.transactionImg);
+  //     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  //     const headers: any = token ? { Authorization: `Bearer ${token}` } : undefined;
+  //     const response = await fetch("/api/auth/add_transaction_card", {
+  //       method: "POST",
+  //       body: fd,
+  //       headers,
+  //     });
+  //     if (!response.ok) {
+  //       const text = await response.text();
+  //       console.error("Upload failed:", response.status, text);
+  //       toast.error("Upload failed");
+  //       return;
+  //     }
+  //     const res = await response.json();
+  //     if (res.success) {
+  //       toast.success("Transaction submitted successfully!");
+  //       setFormData({
+  //         depositAddress: current.depositAddress,
+  //         xlmAmount: current.xlmAmount,
+  //         name: user?.user?.name || "",
+  //         email: user?.user?.email || "",
+  //         phone: "",
+  //         transactionId: "",
+  //         transactionImg: null,
+  //       });
+  //       setPreviewUrl(null);
+  //       setAgree(false);
+  //     } else {
+  //       toast.error(res.message || "Something went wrong!");
+  //     }
+  //   } catch (error: any) {
+  //     console.error("Error submitting transaction:", error);
+  //     toast.error("Failed to submit transaction");
+  //   }
+  // };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     router.push("/log-in");
   };
+
   return (
     <>
       <div className="header fixed-top bg-surface d-flex justify-content-center align-items-center">
@@ -125,13 +264,16 @@ export default function UserInfo() {
                     width: "350px",
                     height: "220px",
                     borderRadius: "12px",
-                    backgroundColor: "#1c1c1c",
-                    color: "#fff",
+                    background: current.background,
+                    color: selectedColor === "silver" ? "#111" : "#fff",
                     padding: "20px",
                     position: "relative",
                     fontFamily: "Arial, sans-serif",
                     overflow: "hidden",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+                    boxShadow: selectedColor === "silver"
+                      ? "0 6px 18px rgba(0,0,0,0.08)"
+                      : "0 6px 18px rgba(0,0,0,0.45)",
+                    border: selectedColor === "silver" ? "1px solid rgba(0,0,0,0.06)" : "none",
                   }}
                 >
                   <div
@@ -141,8 +283,9 @@ export default function UserInfo() {
                       right: "-80px",
                       width: "160px",
                       height: "160px",
-                      backgroundColor: "#9e2a21",
+                      background: current.circleTopRight,
                       borderRadius: "50%",
+                      mixBlendMode: selectedColor === "silver" ? "overlay" : "normal",
                     }}
                   ></div>
 
@@ -153,17 +296,18 @@ export default function UserInfo() {
                       left: "-60px",
                       width: "120px",
                       height: "120px",
-                      backgroundColor: "#c58b2e",
+                      background: current.circleBottomLeft,
                       borderRadius: "50%",
+                      mixBlendMode: selectedColor === "silver" ? "overlay" : "normal",
                     }}
                   ></div>
 
                   <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div style={{ fontSize: "15px", lineHeight: "16px" }}>
-                      <div style={{ fontWeight: "bold", marginBottom:"6px" }}>
+                      <div style={{ fontWeight: "bold", marginBottom: "6px" }}>
                         BackedByQuantum
                       </div>
-                      <div style={{ fontSize: "10px", color: "#ccc" }}>
+                      <div style={{ fontSize: "12px", fontWeight:600, color: selectedColor === "silver" ? "#111" : "#fff", }}>
                         Web3-QUANTUM FINANCIAL SYSTEM
                       </div>
                     </div>
@@ -173,9 +317,11 @@ export default function UserInfo() {
                   <div
                     style={{
                       fontSize: "20px",
-                      fontWeight: "bold",
+                      fontWeight: 700,
                       letterSpacing: "2px",
-                      marginTop: "40px",
+                      marginTop: "36px",
+                      color: selectedColor === "silver" ? "#111" : "#fff",
+                      textShadow: selectedColor === "silver" ? "none" : "0 1px 0 rgba(0,0,0,0.3)",
                     }}
                   >
                     XXXX- XXXX- XXXX- XXXX
@@ -185,7 +331,8 @@ export default function UserInfo() {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
-                      marginTop: "30px",
+                      marginTop: "28px",
+                      color: selectedColor === "silver" ? "#333" : "#ddd",
                     }}
                   >
                     <div style={{ fontSize: "14px" }}>{user?.user?.name}</div>
@@ -195,6 +342,58 @@ export default function UserInfo() {
                   </div>
                 </div>
               </div>
+
+              <div style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 16,
+                marginTop: 16,
+                alignItems: "center",
+              }}>
+                {(["black", "silver", "gold"] as CardColor[]).map((c) => {
+                  const isSelected = selectedColor === c;
+                  const previewBg = cardStyles[c].background;
+                  const label = c === "gold" ? "Gold" : c === "silver" ? "Silver" : "Black";
+                  return (
+                    <label
+                      key={c}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="cardColor"
+                        value={c}
+                        checked={isSelected}
+                        onChange={() => handleColorChange(c)}
+                        style={{ display: "none" }}
+                        aria-label={`${label} card`}
+                      />
+                      <div
+                        onClick={() => handleColorChange(c)}
+                        style={{
+                          width: 66,
+                          height: 40,
+                          borderRadius: 8,
+                          background: previewBg,
+                          border: isSelected ? "3px solid rgba(255,255,255,0.95)" : "2px solid rgba(255,255,255,0.12)",
+                          boxShadow: isSelected ? "0 6px 18px rgba(255,255,255,0.12)" : "0 4px 12px rgba(0,0,0,0.2)",
+                          transition: "all 150ms ease",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      />
+                      <div style={{ marginTop: 6, fontSize: 12, color: "#cfcfcf" }}>{label}</div>
+                    </label>
+                  );
+                })}
+              </div>
+
               <div style={{ display: "flex", marginTop: "20px", justifyContent: 'center' }}>
                 <form onSubmit={handleSubmit}>
                   <label style={{ marginBottom: "10px" }}>Deposit Address</label>
@@ -231,7 +430,7 @@ export default function UserInfo() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    readOnly
+                    // readOnly
                     style={{
                       width: "100%",
                       padding: "10px",
@@ -245,7 +444,7 @@ export default function UserInfo() {
                     type="email"
                     name="email"
                     value={formData.email}
-                    readOnly
+                    // readOnly
                     onChange={handleChange}
                     style={{
                       width: "100%",
@@ -295,28 +494,28 @@ export default function UserInfo() {
                     </label>
                     <input
                       type="file"
-                      name="file"
+                      name="transactionImg"
                       onChange={handleChange}
                       style={{ marginBottom: "10px" }}
                     />
-                    {errors.file && <p style={{ color: "red", fontSize: "12px" }}>{errors.file}</p>}
+                    {errors.transactionImg && <p style={{ color: "red", fontSize: "12px" }}>{errors.transactionImg}</p>}
                   </div>
 
                   <div style={{ marginBottom: "10px" }}>
                     <input
                       type="checkbox"
                       name="agree"
-                      checked={formData.agree}
-                      onChange={handleChange}
+                      checked={agree}
+                      onChange={(e) => setAgree(e.target.checked)}
                     />{" "}
                     I accept QFS Shipping terms and conditions
                   </div>
 
                   <button
                     type="submit"
-                    disabled={!formData.agree}
+                    disabled={!agree}
                     style={{
-                      background: formData.agree
+                      background: agree
                         ? "linear-gradient(to right, #005bbb, #003f7f)"
                         : "#696969ff",
                       color: "#bcb5b5ff",
