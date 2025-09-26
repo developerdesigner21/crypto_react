@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import GoBackButton from "../BackButton";
 import { toast } from "react-toastify";
+import apiClient from "@/lib/axios-config";
 
 // Define the type for the items in the list
 interface Item {
@@ -42,10 +43,22 @@ export default function VarificationChooiceType() {
     const files = e.target.files;
     if (files && files.length > 0) {
       const file = files[0];
+      const maxSize = 8 * 1024 * 1024; // 8MB
+      if (!file.type.startsWith("image/")) {
+        setFormData((prev) => ({ ...prev, [name]: null }));
+        setErrors((prev) => ({ ...prev, [name]: "Only image files allowed" }));
+        return;
+      }
+      if (file.size > maxSize) {
+        setFormData((prev) => ({ ...prev, [name]: null }));
+        setErrors((prev) => ({ ...prev, [name]: "File too large (max 8MB)" }));
+        return;
+      }
       setFormData((prev) => ({ ...prev, [name]: file }));
       setErrors((prev) => ({ ...prev, [name]: "" }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: null }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -56,12 +69,6 @@ export default function VarificationChooiceType() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const domFile = fileInputRef.current?.files?.[0] ?? null;
-    if (domFile) {
-      if (!formData.idImage) {
-        setFormData((prev) => ({ ...prev, idImage: domFile }));
-      }
-    }
     const newErrors: { [key: string]: string } = {};
     if (!formData.firstName) newErrors.firstName = "First name is required";
     if (!formData.lastName) newErrors.lastName = "Last name is required";
@@ -70,17 +77,64 @@ export default function VarificationChooiceType() {
     if (!formData.address) newErrors.address = "Address is required";
     if (!formData.idType) newErrors.idType = "Please select an ID type";
     if (!formData.idImage) newErrors.idImage = "Please upload ID Image";
-    const finalFile = domFile ?? formData.idImage;
-    if (!(finalFile instanceof File)) {
-      newErrors.idImage = "Please upload ID Image";
-    }
 
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
-    toast.loading("Submitting verification...");
-    await new Promise((res) => setTimeout(res, 1000));
-    toast.dismiss();
-    toast.success("Verification successfully!");
+
+    const file = formData.idImage;
+    if (file) {
+      const maxSize = 8 * 1024 * 1024;
+      if (file.size > maxSize) {
+        setErrors((p: any) => ({ ...p, transactionImg: "File too large (max 8MB)" }));
+        return;
+      }
+      if (!file.type.startsWith("image/")) {
+        setErrors((p: any) => ({ ...p, transactionImg: "Only image files allowed" }));
+        return;
+      }
+    }
+
+    try {
+      const fd = new FormData();
+      fd.append("firstName", formData.firstName);
+      fd.append("lastName", formData.lastName);
+      fd.append("dob", formData.dob);
+      fd.append("country", formData.country);
+      fd.append("address", formData.address);
+      fd.append("idType", formData.idType);
+
+      if (file) fd.append("image", file, file.name);
+
+      const response = await apiClient.post("/api/auth/add_verification_users", fd, {
+        headers: { "Content-Type": undefined as any },
+      });
+
+      if (response?.data?.status_code) {
+        toast.success("Transaction submitted successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          dob: "",
+          country: "",
+          address: "",
+          idType: "",
+          idImage: null,
+        });
+        setErrors({});
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      } else {
+        toast.error(response?.data?.message || "Something went wrong!");
+      }
+    } catch (error: any) {
+      console.error("Error submitting transaction:", error);
+      if (error?.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to submit transaction");
+      }
+    }
   };
 
   const idLabel = items.find((i) => i.value === formData.idType)?.label || "Select ID type";

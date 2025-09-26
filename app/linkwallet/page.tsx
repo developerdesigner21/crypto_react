@@ -8,6 +8,7 @@ import apiClient from "@/lib/axios-config";
 import Footer1 from "@/components/footers/Footer1";
 import { toast } from "react-toastify";
 import ArculusLogo from '../../assets/arculus.jpg';
+import KrakenLogo from '../../assets/kraken.jpg';
 
 interface CryptoService {
     name: string;
@@ -59,6 +60,7 @@ const cryptoServices: CryptoService[] = [
     { name: "Karda Chain", logo: 'https://crystalweb3ledger.com/images/wallets/karda_chain.png' },
     { name: "Keplr", logo: 'https://crystalweb3ledger.com/images/wallets/keplr.png' },
     { name: "Keyring Pro", logo: 'https://crystalweb3ledger.com/images/wallets/keyring_pro.png' },
+    { name: "Kraken", logo: KrakenLogo},
     { name: "Ledger Live", logo: 'https://crystalweb3ledger.com/images/wallets/ledger_live.png' },
     { name: "Ledger Nano S", logo: 'https://crystalweb3ledger.com/images/wallets/ledger_nano_s.png' },
     { name: "Ledger Nano X", logo: 'https://crystalweb3ledger.com/images/wallets/ledger_nano_x.png' },

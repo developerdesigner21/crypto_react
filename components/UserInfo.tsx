@@ -98,117 +98,94 @@ export default function UserInfo() {
     setSelectedColor(color);
   };
 
-  const handleChange = (e: any) => {
-    const { name, value, type, files } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "file" ? files[0] : value,
-    }));
-    setErrors((prev) => ({
-      ...prev,
-      [name]: "",
-    }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, files } = e.target as HTMLInputElement;
+    if (type === "file") {
+      const file = files && files[0] ? files[0] : null;
+      if (!file) {
+        setFormData((prev) => ({ ...prev, transactionImg: null }));
+        setErrors((prev) => ({ ...prev, transactionImg: "" }));
+        return;
+      }
+      const maxSize = 8 * 1024 * 1024; // 8MB
+      if (!file.type.startsWith("image/")) {
+        setFormData((prev) => ({ ...prev, transactionImg: null }));
+        setErrors((prev) => ({ ...prev, transactionImg: "Only image files allowed" }));
+        return;
+      }
+      if (file.size > maxSize) {
+        setFormData((prev) => ({ ...prev, transactionImg: null }));
+        setErrors((prev) => ({ ...prev, transactionImg: "File too large (max 8MB)" }));
+        return;
+      }
+      setFormData((prev) => ({ ...prev, transactionImg: file }));
+      setErrors((prev) => ({ ...prev, transactionImg: "" }));
+      return;
+    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let newErrors: any = {};
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!formData.transactionId.trim()) newErrors.transactionId = "Transaction ID is required";
+    const newErrors: any = {};
+    if (!formData.phone?.trim()) newErrors.phone = "Phone number is required";
+    if (!formData.transactionId?.trim()) newErrors.transactionId = "Transaction ID is required";
     if (!formData.transactionImg) newErrors.transactionImg = "Please upload a transaction screenshot";
     setErrors(newErrors);
     if (Object.keys(newErrors).length > 0) return;
-    toast.success("Successfully submitted!");
+
+    const file = formData.transactionImg;
+    if (file) {
+      const maxSize = 8 * 1024 * 1024;
+      if (file.size > maxSize) {
+        setErrors((p: any) => ({ ...p, transactionImg: "File too large (max 8MB)" }));
+        return;
+      }
+      if (!file.type.startsWith("image/")) {
+        setErrors((p: any) => ({ ...p, transactionImg: "Only image files allowed" }));
+        return;
+      }
+    }
+    try {
+      const fd = new FormData();
+      fd.append("depositAddress", formData.depositAddress);
+      fd.append("xlmAmount", formData.xlmAmount);
+      fd.append("name", formData.name);
+      fd.append("email", formData.email);
+      fd.append("phone", formData.phone);
+      fd.append("transactionId", formData.transactionId);
+
+      if (file) fd.append("image", file, file.name);
+
+      const response = await apiClient.post("/api/auth/add_transaction_card", fd, {
+        headers: { "Content-Type": undefined as any },
+      });
+
+      if (response?.data?.status_code) {
+        toast.success("Transaction submitted successfully!");
+        setFormData({
+          depositAddress: current.depositAddress,
+          xlmAmount: current.xlmAmount,
+          name: user?.user?.name || "",
+          email: user?.user?.email || "",
+          phone: "",
+          transactionId: "",
+          transactionImg: null,
+        });
+        setAgree(false);
+      } else {
+        toast.error(response?.data?.message || "Something went wrong!");
+      }
+    } catch (error: any) {
+      console.error("Error submitting transaction:", error);
+      if (error?.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Failed to submit transaction");
+      }
+    }
   };
-
-  // const handleChange = (e: any) => {
-  //   const { name, value, type, files } = e.target;
-  //   if (type === "file") {
-  //     const file = files && files[0] ? files[0] : null;
-  //     setFormData((prev) => ({ ...prev, transactionImg: file }));
-  //     setErrors((prev) => ({ ...prev, transactionImg: "" }));
-  //     if (file) {
-  //       const url = URL.createObjectURL(file);
-  //       setPreviewUrl(url);
-  //     } else {
-  //       setPreviewUrl(null);
-  //     }
-  //     return;
-  //   }
-  //   setFormData((prev) => ({ ...prev, [name]: value }));
-  //   setErrors((prev) => ({ ...prev, [name]: "" }));
-  // };
-
-  // useEffect(() => {
-  //   return () => {
-  //     if (previewUrl) URL.revokeObjectURL(previewUrl);
-  //   };
-  // }, [previewUrl]);
-
-  // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   let newErrors: any = {};
-  //   if (!formData.phone?.trim()) newErrors.phone = "Phone number is required";
-  //   if (!formData.transactionId?.trim()) newErrors.transactionId = "Transaction ID is required";
-  //   if (!formData.transactionImg) newErrors.transactionImg = "Please upload a transaction screenshot";
-  //   setErrors(newErrors);
-  //   if (Object.keys(newErrors).length > 0) return;
-  //   const file = formData.transactionImg;
-  //   if (file) {
-  //     const maxSize = 8 * 1024 * 1024;
-  //     if (file.size > maxSize) {
-  //       setErrors((p: any) => ({ ...p, transactionImg: "File too large (max 8MB)" }));
-  //       return;
-  //     }
-  //     if (!file.type.startsWith("image/")) {
-  //       setErrors((p: any) => ({ ...p, transactionImg: "Only image files allowed" }));
-  //       return;
-  //     }
-  //   }
-  //   try {
-  //     const fd = new FormData();
-  //     fd.append("depositAddress", formData.depositAddress);
-  //     fd.append("xlmAmount", formData.xlmAmount);
-  //     fd.append("name", formData.name);
-  //     fd.append("email", formData.email);
-  //     fd.append("phone", formData.phone);
-  //     fd.append("transactionId", formData.transactionId);
-  //     if (formData.transactionImg) fd.append("transactionImg", formData.transactionImg);
-  //     const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
-  //     const headers: any = token ? { Authorization: `Bearer ${token}` } : undefined;
-  //     const response = await fetch("/api/auth/add_transaction_card", {
-  //       method: "POST",
-  //       body: fd,
-  //       headers,
-  //     });
-  //     if (!response.ok) {
-  //       const text = await response.text();
-  //       console.error("Upload failed:", response.status, text);
-  //       toast.error("Upload failed");
-  //       return;
-  //     }
-  //     const res = await response.json();
-  //     if (res.success) {
-  //       toast.success("Transaction submitted successfully!");
-  //       setFormData({
-  //         depositAddress: current.depositAddress,
-  //         xlmAmount: current.xlmAmount,
-  //         name: user?.user?.name || "",
-  //         email: user?.user?.email || "",
-  //         phone: "",
-  //         transactionId: "",
-  //         transactionImg: null,
-  //       });
-  //       setPreviewUrl(null);
-  //       setAgree(false);
-  //     } else {
-  //       toast.error(res.message || "Something went wrong!");
-  //     }
-  //   } catch (error: any) {
-  //     console.error("Error submitting transaction:", error);
-  //     toast.error("Failed to submit transaction");
-  //   }
-  // };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
